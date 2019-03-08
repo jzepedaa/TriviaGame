@@ -74,11 +74,11 @@ $(document).ready(function() {
     }
   ];
 
-  // console.log(questions[0].question);
-  // console.log(questions[1].question);
+  console.log(questions[0].question);
+  console.log(questions[1].question);
 
   //the correct answer for each question
-  var rightChoice = question[questionNumber].rightAnswers;
+  var rightChoice = question[questionNumber].rightChoice;
   //keep count of the questions
   var questionNumber = 0;
   //keep total number of wrong answers
@@ -91,7 +91,7 @@ $(document).ready(function() {
   //create the functions
   //When the user guesses a correct answer
   function win() {
-    // var rightChoice = question[questionNumber].rightAnswers;
+    // var rightChoice = question[questionNumber].rightChoice;
     correct++;
     $("#innerContainer").html("<h2> That is Correct</h2>");
     $("#innerContainer").append(
@@ -103,11 +103,10 @@ $(document).ready(function() {
     setTimeout(questionOrder, 2000);
     questionNumber++;
   }
-  console.log(win);
 
   //when the user guesses the wrong answer
   function loose() {
-    // var rightChoice = question[questionNumber].rightAnswers;
+    // var rightChoice = question[questionNumber].rightChoice;
     wrong++;
     $("#innerContainer").html("<h2> That is Incorrect</h2>");
     $("#innerContainer").append(
@@ -118,11 +117,11 @@ $(document).ready(function() {
     );
     setTimeout(questionOrder, 2000);
     questionNumber++;
-    console.log(loose);
   }
 
   //when the user runs out of time
   function outOfTime() {
+    // var rightChoice = question[questionNumber].rightChoice;
     if (time === 0) {
       wrong++;
       $("#innerContainer").html("<h2>Out Of Time</h2>");
@@ -136,13 +135,14 @@ $(document).ready(function() {
       questionNumber++;
     }
   }
-  console.log(outOfTime);
 
-  //diplay the results of the game at the end
+  //display the results of the game at the end
   function results() {}
 
+  //creates the content for the questions
   function content() {}
 
+  //timer for the game
   function timer() {
     clock = setInterval(countdown, 1000);
     function countDown() {
@@ -155,15 +155,17 @@ $(document).ready(function() {
       $("#timer").html(time);
     }
   }
-
+  //function to show the next question
   function questionOrder() {}
 
+  //resets the variables called when game reset
   function reset() {
     var questionNumber = 0;
     var wrong = 0;
     var correct = 0;
   }
 
+  //starts the game
   function start() {}
 
   //click function
