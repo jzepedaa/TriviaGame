@@ -105,7 +105,7 @@ $(document).ready(function() {
   }
 
   //when the user guesses the wrong answer
-  function loose() {
+  function lose() {
     // var rightChoice = question[questionNumber].rightChoice;
     wrong++;
     $("#innerContainer").html("<h2> That is Incorrect</h2>");
