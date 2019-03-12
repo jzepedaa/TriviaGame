@@ -153,8 +153,10 @@ $(document).ready(function() {
         wrong +
         "</strong> wrong.</p>"
     );
+    //this button did not work for some reason.
     $("#innerContainer").append("<h1 id='start'>Start Over?</h1>");
-    $("#start").click(questionOrder);
+    $("#start").click(start);
+
     reset();
   }
 
