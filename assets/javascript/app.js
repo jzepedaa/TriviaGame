@@ -77,7 +77,7 @@ $(document).ready(function() {
   //keep count of the questions
   var questionNumber = 0;
   // initial time of 15 seconds for each question
-  var time = 20;
+  var time = 30;
   //keep total number of right answers
   var correct = 0;
   //keep total number of wrong answers
@@ -115,6 +115,7 @@ $(document).ready(function() {
   }
 
   //when the user runs out of time
+
   function outOfTime() {
     if (time === 0) {
       $("#innerContainer").html("<h2>You ran out of time!</h2>");
@@ -190,10 +191,13 @@ $(document).ready(function() {
   }
 
   //function to show the next question
+
   function questionOrder() {
     if (questionNumber < questions.length) {
-      time = 15;
-      $("#innerContainer").html("<h2>You have " + time + " seconds left!</h2>");
+      time = 30;
+      $("#innerContainer").html(
+        "<h2>You have <span id='timer'>" + time + "</span> seconds left!</h2>"
+      );
       content();
       timer();
       outOfTime();
@@ -212,7 +216,7 @@ $(document).ready(function() {
   }
 
   //starts the game
-  function startGame() {
+  function start() {
     $("#innerContainer").html(
       "<h2>You have <span id='timer'>" + time + "</span> seconds left!</h2>"
     );
@@ -223,7 +227,7 @@ $(document).ready(function() {
     outOfTime();
   }
 
-  $("#start").click(questionOrder);
+  $("#start").click(start);
 
   // click function
   $("#innerContainer").on("click", ".choices", function() {

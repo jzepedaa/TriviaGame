@@ -1,3 +1,8 @@
+img {
+  opacity: 1px;
+  height: 250px;
+  width: 350px;
+}
 body {
   background-image: url("../images/Background1.jpg");
   background-color: black;
@@ -22,15 +27,10 @@ body {
 
 #timer {
   font-weight: bold;
-  font-size: 5px;
+  font-size: 30px;
 }
 
 .choices {
   background-color: white;
   color: black;
-}
-
-img {
-  height: 250px;
-  width: 350px;
 }
