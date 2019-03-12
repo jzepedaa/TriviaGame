@@ -11,7 +11,7 @@ $(document).ready(function() {
     },
     {
       question: "How many players on the field per team?",
-      choices: ["8", "8", "10", "11"],
+      choices: ["8", "9", "10", "11"],
       rightChoice: "11",
       picture: "<img src='./assets/images/Setup.jpg' class='img'>"
     },
@@ -67,109 +67,173 @@ $(document).ready(function() {
       picture: "<img src='./assets/images/MessiHatTrick.jpg' class='img'>"
     },
     {
-      question: "Who has the msot goals in the Champions League?",
+      question: "Who has the most goals in the Champions League?",
       choices: ["Cristiano Ronaldo", "Lionel Messi", "Neymar", "Sergio Aguero"],
       rightChoice: "Cristiano Ronaldo",
       picture: "<img src='./assets/images/Ronaldo.jpg' class='img'>"
     }
   ];
 
-  console.log(questions[0].question);
-  console.log(questions[1].question);
-
-  //the correct answer for each question
-  var rightChoice = question[questionNumber].rightChoice;
   //keep count of the questions
   var questionNumber = 0;
-  //keep total number of wrong answers
-  var wrong = 0;
+  // initial time of 15 seconds for each question
+  var time = 20;
   //keep total number of right answers
   var correct = 0;
-  //variable for the timer
-  var time = 30;
+  //keep total number of wrong answers
+  var wrong = 0;
 
   //create the functions
   //When the user guesses a correct answer
   function win() {
-    // var rightChoice = question[questionNumber].rightChoice;
+    $("#innerContainer").html("<h2>That is the right answer</p>");
     correct++;
-    $("#innerContainer").html("<h2> That is Correct</h2>");
+    var rightChoice = questions[questionNumber].rightChoice;
     $("#innerContainer").append(
-      "<h2> The answer is" +
+      "<h2>The answer was <span class='answer'>" +
         rightChoice +
-        "</h2>" +
-        questions[questionNumber].image
+        "</span></h2>" +
+        questions[questionNumber].picture
     );
-    setTimeout(questionOrder, 2000);
+    setTimeout(questionOrder, 3000);
     questionNumber++;
   }
 
   //when the user guesses the wrong answer
-  function lose() {
-    // var rightChoice = question[questionNumber].rightChoice;
+  function Loss() {
+    $("#innerContainer").html("<h2>Nope, that's not it!</h2>");
     wrong++;
-    $("#innerContainer").html("<h2> That is Incorrect</h2>");
+    var rightChoice = questions[questionNumber].rightChoice;
     $("#innerContainer").append(
-      "<h2> The answer is" +
+      "<h2>The answer was <span class='answer'>" +
         rightChoice +
-        "</h2>" +
-        questions[questionNumber].image
+        "</span></h2>" +
+        questions[questionNumber].picture
     );
-    setTimeout(questionOrder, 2000);
+    setTimeout(questionOrder, 3000);
     questionNumber++;
   }
 
   //when the user runs out of time
   function outOfTime() {
-    // var rightChoice = question[questionNumber].rightChoice;
     if (time === 0) {
+      $("#innerContainer").html("<h2>You ran out of time!</h2>");
       wrong++;
-      $("#innerContainer").html("<h2>Out Of Time</h2>");
+      var rightChoice = questions[questionNumber].rightChoice;
       $("#innerContainer").append(
-        "<h2> The answer is" +
+        "<h2>The answer was <span class='answer'>" +
           rightChoice +
-          "</h2>" +
-          questions[questionNumber].image
+          "</span></h2>" +
+          questions[questionNumber].picture
       );
-      setTimeout(questionOrder, 2000);
+      setTimeout(questionOrder, 3000);
       questionNumber++;
     }
   }
 
   //display the results of the game at the end
-  function results() {}
+  function results() {
+    if (correct === questions.length) {
+      var endMessage = "Good job you got them all right";
+    } else if (correct > wrong) {
+      var endMessage = "You did better than 50%";
+    } else {
+      var endMessage = "Not so good";
+    }
+    $("#innerContainer").html(
+      "<p>" +
+        endMessage +
+        "</p>" +
+        "<p>You got <strong>" +
+        correct +
+        "</strong> right.</p>" +
+        "<p>You got <strong>" +
+        wrong +
+        "</strong> wrong.</p>"
+    );
+    $("#innerContainer").append("<h1 id='start'>Start Over?</h1>");
+    $("#bottomText").html(bottomText);
+    reset();
+    $("#start").click(questionOrder);
+  }
 
   //creates the content for the questions
-  function content() {}
+  function content() {
+    $("#innerContainer").append(
+      "<h2><strong>" +
+        questions[questionNumber].question +
+        "</h2><h2 class='choices'>" +
+        questions[questionNumber].choices[0] +
+        "</h2><h2 class='choices'>" +
+        questions[questionNumber].choices[1] +
+        "</h2><h2 class='choices'>" +
+        questions[questionNumber].choices[2] +
+        "</h2><h2 class='choices'>" +
+        questions[questionNumber].choices[3] +
+        "</strong></h2>"
+    );
+  }
 
   //timer for the game
   function timer() {
-    clock = setInterval(countdown, 1000);
+    clock = setInterval(countDown, 1000);
     function countDown() {
       if (time < 1) {
         clearInterval(clock);
         outOfTime();
-      } else if (time > 0) {
+      }
+      if (time > 0) {
         time--;
       }
-      $("#timer").html(time);
+      $("#timer").html("<strong>" + time + "</strong>");
     }
   }
+
   //function to show the next question
-  function questionOrder() {}
+  function questionOrder() {
+    if (questionNumber < questions.length) {
+      time = 15;
+      $("#innerContainer").html("<h2>You have " + time + " seconds left!</h2>");
+      content();
+      timer();
+      outOfTime();
+    } else {
+      results();
+    }
+    // console.log(questionNumber);
+    // console.log(questions[questionNumber].rightChoice);
+  }
 
   //resets the variables called when game reset
   function reset() {
-    var questionNumber = 0;
-    var wrong = 0;
-    var correct = 0;
+    questionNumber = 0;
+    correct = 0;
+    wrong = 0;
   }
 
   //starts the game
-  function start() {}
+  function startGame() {
+    $("#innerContainer").html(
+      "<h2>You have <span id='timer'>" + time + "</span> seconds left!</h2>"
+    );
+    $("#start").hide();
 
-  //click function
+    content();
+    timer();
+    outOfTime();
+  }
 
-  // ------------------------------------------------------------------------------------------------------------------------------------------------------
-  // ------------------------------------------------------------------------------------------------------------------------------------------------------
+  $("#start").click(questionOrder);
+
+  // click function
+  $("#innerContainer").on("click", ".choices", function() {
+    var guess = $(this).text();
+    if (guess === questions[questionNumber].rightChoice) {
+      clearInterval(clock);
+      win();
+    } else {
+      clearInterval(clock);
+      Loss();
+    }
+  });
 });
