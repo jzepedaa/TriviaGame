@@ -74,6 +74,7 @@ $(document).ready(function() {
     }
   ];
 
+  // var rightChoice = questions[questionNumber].rightChoice;
   //keep count of the questions
   var questionNumber = 0;
   // initial time of 15 seconds for each question
@@ -95,7 +96,7 @@ $(document).ready(function() {
         "</span></h2>" +
         questions[questionNumber].picture
     );
-    setTimeout(questionOrder, 3000);
+    setTimeout(questionOrder, 4000);
     questionNumber++;
   }
 
@@ -110,7 +111,7 @@ $(document).ready(function() {
         "</span></h2>" +
         questions[questionNumber].picture
     );
-    setTimeout(questionOrder, 3000);
+    setTimeout(questionOrder, 4000);
     questionNumber++;
   }
 
@@ -127,7 +128,7 @@ $(document).ready(function() {
           "</span></h2>" +
           questions[questionNumber].picture
       );
-      setTimeout(questionOrder, 3000);
+      setTimeout(questionOrder, 4000);
       questionNumber++;
     }
   }
@@ -153,15 +154,14 @@ $(document).ready(function() {
         "</strong> wrong.</p>"
     );
     $("#innerContainer").append("<h1 id='start'>Start Over?</h1>");
-    $("#bottomText").html(bottomText);
-    reset();
     $("#start").click(questionOrder);
+    reset();
   }
 
   //creates the content for the questions
   function content() {
     $("#innerContainer").append(
-      "<h2><strong>" +
+      "<h2>" +
         questions[questionNumber].question +
         "</h2><h2 class='choices'>" +
         questions[questionNumber].choices[0] +
@@ -171,7 +171,7 @@ $(document).ready(function() {
         questions[questionNumber].choices[2] +
         "</h2><h2 class='choices'>" +
         questions[questionNumber].choices[3] +
-        "</strong></h2>"
+        "</h2>"
     );
   }
 
@@ -186,7 +186,7 @@ $(document).ready(function() {
       if (time > 0) {
         time--;
       }
-      $("#timer").html("<strong>" + time + "</strong>");
+      $("#timer").html(time);
     }
   }
 
