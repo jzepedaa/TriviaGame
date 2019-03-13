@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   console.log("im here");
 
   ///Made an array for my questions and answers
@@ -92,9 +92,9 @@ $(document).ready(function() {
     var rightChoice = questions[questionNumber].rightChoice;
     $("#innerContainer").append(
       "<h2>The answer was <span class='answer'>" +
-        rightChoice +
-        "</span></h2>" +
-        questions[questionNumber].picture
+      rightChoice +
+      "</span></h2>" +
+      questions[questionNumber].picture
     );
     setTimeout(questionOrder, 4000);
     questionNumber++;
@@ -107,9 +107,9 @@ $(document).ready(function() {
     var rightChoice = questions[questionNumber].rightChoice;
     $("#innerContainer").append(
       "<h2>The answer was <span class='answer'>" +
-        rightChoice +
-        "</span></h2>" +
-        questions[questionNumber].picture
+      rightChoice +
+      "</span></h2>" +
+      questions[questionNumber].picture
     );
     setTimeout(questionOrder, 4000);
     questionNumber++;
@@ -124,9 +124,9 @@ $(document).ready(function() {
       var rightChoice = questions[questionNumber].rightChoice;
       $("#innerContainer").append(
         "<h2>The answer was <span class='answer'>" +
-          rightChoice +
-          "</span></h2>" +
-          questions[questionNumber].picture
+        rightChoice +
+        "</span></h2>" +
+        questions[questionNumber].picture
       );
       setTimeout(questionOrder, 4000);
       questionNumber++;
@@ -144,17 +144,17 @@ $(document).ready(function() {
     }
     $("#innerContainer").html(
       "<p>" +
-        endMessage +
-        "</p>" +
-        "<p>You got <strong>" +
-        correct +
-        "</strong> right.</p>" +
-        "<p>You got <strong>" +
-        wrong +
-        "</strong> wrong.</p>"
+      endMessage +
+      "</p>" +
+      "<p>You got <strong>" +
+      correct +
+      "</strong> right.</p>" +
+      "<p>You got <strong>" +
+      wrong +
+      "</strong> wrong.</p>"
     );
     //this button did not work for some reason.
-    $("#innerContainer").append("<h1 id='start'>Start Over?</h1>");
+    $("#innerContainer").append("<h1 id='start'>Click to start over from question 1?</h1>");
     $("#start").click(start);
 
     reset();
@@ -164,16 +164,16 @@ $(document).ready(function() {
   function content() {
     $("#innerContainer").append(
       "<h2>" +
-        questions[questionNumber].question +
-        "</h2><h2 class='choices'>" +
-        questions[questionNumber].choices[0] +
-        "</h2><h2 class='choices'>" +
-        questions[questionNumber].choices[1] +
-        "</h2><h2 class='choices'>" +
-        questions[questionNumber].choices[2] +
-        "</h2><h2 class='choices'>" +
-        questions[questionNumber].choices[3] +
-        "</h2>"
+      questions[questionNumber].question +
+      "</h2><h2 class='choices'>" +
+      questions[questionNumber].choices[0] +
+      "</h2><h2 class='choices'>" +
+      questions[questionNumber].choices[1] +
+      "</h2><h2 class='choices'>" +
+      questions[questionNumber].choices[2] +
+      "</h2><h2 class='choices'>" +
+      questions[questionNumber].choices[3] +
+      "</h2>"
     );
   }
 
@@ -232,7 +232,7 @@ $(document).ready(function() {
   $("#start").click(start);
 
   // click function
-  $("#innerContainer").on("click", ".choices", function() {
+  $("#innerContainer").on("click", ".choices", function () {
     var guess = $(this).text();
     if (guess === questions[questionNumber].rightChoice) {
       clearInterval(clock);
