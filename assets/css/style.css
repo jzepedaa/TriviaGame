@@ -11,6 +11,12 @@ body {
   font-size: 1em;
   text-align: center;
 }
+html {
+  cursor: url(../images/cursor3.jpg), auto;
+  
+}
+
+
 .wrapper {
   padding-bottom: 10px;
   padding-top: 10px;
@@ -34,6 +40,8 @@ body {
   background-color: white;
   color: black;
 }
+
+
 
 
 @media only screen and (min-width: 600px) {
