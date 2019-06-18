@@ -77,7 +77,7 @@ $(document).ready(function () {
   // var rightChoice = questions[questionNumber].rightChoice;
   //keep count of the questions
   var questionNumber = 0;
-  // initial time of 15 seconds for each question
+  // initial time of 30 seconds for each question
   var time = 30;
   //keep total number of right answers
   var correct = 0;
